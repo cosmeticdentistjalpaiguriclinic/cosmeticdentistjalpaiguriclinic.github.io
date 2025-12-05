@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    
+    <title>Cosmetic Dentist Jalpaiguri Clinic | Dr. S. Roy | Smile Design Experts</title>
+    <meta name="description" content="Best Cosmetic Dental Clinic in Jalpaiguri. MRI-Safe Zirconia Crowns, Smile Makeovers & Painless Treatment. Chat with our Multilingual AI.">
+    <meta name="keywords" content="cosmetic dentist Jalpaiguri, smile makeover cost, veneers Jalpaiguri, teeth gap filling, laser whitening Dhupguri, cosmetic dental surgeon Maynaguri, MRI safe dental crown, economy dental package">
+    
+    <meta property="og:image" content="https://cosmeticdentistjalpaiguriclinic.github.io/clinic-cover.jpg">
+    <meta property="og:title" content="Cosmetic Smile Makeover - Dr. S. Roy">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&family=Orbitron:wght@700&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("9VxuDiVq5r1LPJTeD"); 
+       })();
+    </script>
+
+    <style>
+        /* --- NEON PINK THEME --- */
+        :root { --dark-bg: #0A0A1A; --neon-blue: #00FFFF; --neon-pink: #FF00FF; }
+        body { font-family: 'Space Mono', 'Hind Siliguri', monospace; background: var(--dark-bg); color: var(--neon-blue); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+        
+        .header-glow { color: white; text-shadow: 0 0 10px var(--neon-pink); font-family: 'Orbitron', sans-serif; }
+        .neon-border { border: 2px solid var(--neon-pink); box-shadow: 0 0 10px var(--neon-pink); background: rgba(255, 0, 255, 0.05); }
+        .input-style { background: #1A1A3A; border: 1px solid var(--neon-blue); color: white; padding: 10px; border-radius: 4px; outline: none; }
+        
+        /* CHAT WINDOW */
+        .chat-window { width: 100%; max-width: 400px; height: 550px; max-height: 80vh; background: #000; border: 2px solid var(--neon-pink); box-shadow: 0 0 20px var(--neon-pink); display: flex; flex-direction: column; position: relative; transition: all 0.3s ease; }
+        .chat-body { flex: 1; padding: 15px; overflow-y: auto; font-size: 14px; scroll-behavior: smooth; line-height: 1.6; }
+        
+        .bot-msg { background: #1A1A3A; padding: 10px; border-radius: 4px; margin-bottom: 10px; color: var(--neon-pink); border-left: 3px solid var(--neon-pink); }
+        .user-msg { background: #00FFFF; color: #000; padding: 10px; border-radius: 4px; margin-bottom: 10px; text-align: right; border-right: 3px solid white; align-self: flex-end; margin-left: auto; max-width: 80%; }
+        
+        /* CONTROLS */
+        .lang-bar { display: flex; justify-content: center; gap: 10px; padding: 5px; background: #111; border-bottom: 1px solid #333; }
+        .lang-btn { background: #222; color: #777; border: 1px solid #444; padding: 2px 10px; font-size: 12px; cursor: pointer; border-radius: 4px; transition: all 0.3s; }
+        .lang-btn.active { background: var(--neon-pink); color: white; border-color: white; box-shadow: 0 0 8px var(--neon-pink); }
+
+        .mic-btn { font-size: 20px; background: none; border: none; cursor: pointer; transition: all 0.3s; color: #555; }
+        .mic-btn.listening { color: #FF0000; animation: pulse-red 1.5s infinite; transform: scale(1.2); }
+        @keyframes pulse-red { 0% { text-shadow: 0 0 0 rgba(255,0,0,0.7); } 70% { text-shadow: 0 0 10px rgba(255,0,0,0); } }
+
+        /* NETWORK LINKS */
+        .net-link { color: #aaa; font-size: 11px; text-decoration: none; border: 1px solid #333; padding: 6px 10px; border-radius: 4px; margin: 3px; display: inline-block; transition: all 0.3s; background: #111; }
+        .net-link:hover { border-color: var(--neon-pink); color: white; box-shadow: 0 0 10px rgba(255, 0, 255, 0.3); }
+
+        /* SOCIAL PROOF POPUP */
+        .proof-notification {
+            position: fixed; bottom: 90px; left: 20px; 
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid var(--neon-pink); 
+            border-left: 4px solid var(--neon-pink);
+            padding: 12px 15px; border-radius: 4px; color: white; font-size: 12px;
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.3); z-index: 90;
+            display: flex; align-items: center; gap: 12px;
+            opacity: 0; transform: translateY(20px); transition: all 0.5s ease-in-out; pointer-events: none;
+        }
+        .proof-notification.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        .proof-avatar { width: 35px; height: 35px; background: #1A1A3A; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; border: 1px solid var(--neon-pink); color: var(--neon-pink); }
+
+        .chat-lock-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.95); z-index: 10; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; transition: opacity 0.5s; }
+        .hidden-force { display: none !important; }
+        
+        /* WHATSAPP FLOAT */
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 25px; right: 25px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 0px 0px 15px rgba(37, 211, 102, 0.6); z-index: 1000; display: flex; align-items: center; justify-content: center; animation: pulse-green 2s infinite; }
+        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+    </style>
+</head>
+<body class="p-4">
+
+    <header class="text-center py-6">
+        <h1 class="text-2xl md:text-3xl header-glow">COSMETIC AI</h1>
+        <p class="text-xs md:text-sm mt-1 text-gray-400">Dr. S. Roy's Cosmetic Clinic | Jalpaiguri</p>
+    </header>
+
+    <main class="flex-grow flex flex-col md:flex-row justify-center items-center gap-6 md:items-start w-full max-w-5xl mx-auto">
+
+        <div id="reg-form-container" class="w-full max-w-sm p-6 neon-border transition-all duration-500">
+            <h2 class="text-lg font-bold mb-3 text-white">UNLOCK / আনলক করুন</h2>
+            <p class="text-xs text-gray-400 mb-5">Secure Consultation / নিরাপদ পরামর্শ</p>
+            <form id="lead-form">
+                <input type="text" id="reg-name" placeholder="Name / নাম" class="input-style w-full mb-3" required>
+                <input type="tel" id="reg-phone" placeholder="Phone / ফোন নম্বর" class="input-style w-full mb-3" required>
+                <input type="email" id="reg-email" placeholder="Email (Optional)" class="input-style w-full mb-5">
+                <button type="submit" class="w-full py-2 font-bold bg-pink-500 text-white hover:bg-pink-600 transition duration-300 rounded shadow-[0_0_10px_#FF00FF]">Start Chat / চ্যাট শুরু করুন</button>
+            </form>
+        </div>
+
+        <div id="ai-chat-window" class="chat-window">
+            <div class="lang-bar">
+                <button onclick="setLanguage('en')" id="btn-en" class="lang-btn active">English</button>
+                <button onclick="setLanguage('bn')" id="btn-bn" class="lang-btn">বাংলা</button>
+                <button onclick="setLanguage('hi')" id="btn-hi" class="lang-btn">हिंदी</button>
+            </div>
+
+            <div class="chat-header text-xs py-2 px-3 border-b border-gray-700 bg-gray-900 flex justify-between items-center">
+                <span>AI Status: <span class="animate-pulse" style="color: var(--neon-pink);">• Online</span></span>
+                <span class="text-gray-500">Dr. Roy AI v11.0</span>
+            </div>
+            
+            <div id="chatBody" class="chat-body flex flex-col">
+                <div class="bot-msg" id="welcome-msg">Hello! I am Dr. Roy's AI. I speak English, Bangla, and Hindi. <br>Tap the 🎤 button to speak or type your question.</div>
+            </div>
+
+            <div id="chat-lock-overlay" class="chat-lock-overlay">
+                <span class="text-5xl mb-2">💎</span>
+                <p class="text-xl header-glow">LOCKED</p>
+                <p class="text-xs text-gray-400 mt-2">Enter Name to Unlock</p>
+            </div>
+
+            <div class="p-3 border-t border-gray-700 bg-gray-900">
+                <div class="flex justify-between items-center mb-2">
+                    <button onclick="uploadToWhatsApp()" class="text-xs text-pink-400 hover:text-white border border-pink-500 px-2 py-1 rounded flex items-center gap-1">
+                        📷 Photo / ছবি আপলোড
+                    </button>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleVoice()" id="mic-btn" class="mic-btn" title="Speak Now">🎤</button>
+                    <input type="text" id="chat-input" placeholder="Type here..." class="input-style flex-grow mr-2 text-sm" onkeypress="handleChat(event)" autocomplete="off">
+                    <button onclick="sendChatFromInput()" class="text-xl px-3 py-1 bg-pink-500 text-white font-bold rounded hover:bg-pink-600 transition">➤</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div class="max-w-4xl mx-auto mt-12 mb-8 p-4 border-t border-gray-800 text-center">
+        <h3 class="text-white font-bold mb-4 text-sm tracking-wider" style="color:var(--neon-pink);">EXPLORE OUR DIGITAL NETWORK</h3>
+        
+        <div class="flex justify-center flex-wrap gap-3 mb-6">
+            <a href="https://dentistjalpaiguri.github.io" class="net-link" style="border-color:#00FFFF;">🏥 Main Clinic Hub</a>
+            <a href="https://smilemakeoverjalpaiguri.github.io" class="net-link">😁 Smile Designing</a>
+            <a href="https://bestdentistjalpaiguri.github.io" class="net-link">🏆 Best Dentist Site</a>
+            <a href="https://bestcosmeticdentistjalpaiguri.github.io" class="net-link">✨ Cosmetic Expert</a>
+            <a href="https://dentalclinicjalpaiguri.github.io" class="net-link">📱 60-Apps WebApp</a>
+        </div>
+        
+        <h3 class="text-white font-bold mb-4 text-sm tracking-wider" style="color:var(--neon-blue);">CONNECT & VERIFY</h3>
+        <div class="flex justify-center flex-wrap gap-3 mb-8">
+            <a href="https://www.facebook.com/bestdentalclinic.Jalpaiguridentalclinic.smile?mibextid=ZbWKwL" class="net-link">Facebook</a>
+            <a href="https://www.instagram.com/drsudipsdentalclinic" class="net-link">Instagram</a>
+            <a href="https://www.youtube.com/@dentistjalpaiguri" class="net-link">YouTube</a>
+            <a href="https://www.linkedin.com/in/drsudiproy-best-dentalsurgeon-jalpaiguri" class="net-link">LinkedIn</a>
+            <a href="https://jsdl.in/DT-99SZ3I1WFPL" class="net-link">JustDial</a>
+            <a href="https://www.practo.com/jalpaiguri/doctor/dr-sudip-roy-dentist" class="net-link">Practo</a>
+        </div>
+        
+        <p class="text-xs text-gray-400 mt-4">
+            SERVING PATIENTS FROM: Jalpaiguri, Siliguri, Malbazar, Dhupguri, Mainaguri, Belacoba, Fatapukur, Raninagar, Mohitnagar, Denguajhar, Lataguri, Odlabari, Kranti, Banarhat, Gairkata, Maskalaibari, Shantipara, 73 More, Assam More, Haldibari, Mekhliganj, Domohani, Panga, Choulhati, Indira Colony, Sirishtala.
+        </p>
+    </div>
+
+    <footer class="text-center text-xs mt-4 mb-20">
+        <p style="color: #555;">© 2025 Dr. S. Roy's Cosmetic Clinic | Jalpaiguri</p>
+    </footer>
+
+    <div id="social-proof" class="proof-notification">
+        <div class="proof-avatar" id="proof-icon">👤</div>
+        <div>
+            <p style="margin:0; font-weight:bold; color:var(--neon-pink)" id="proof-name">Name</p>
+            <p style="margin:0; color:#ccc; font-size:11px" id="proof-action">Action</p>
+            <p style="margin:0; color:gray; font-size:10px" id="proof-time">Time</p>
+        </div>
+    </div>
+
+    <a href="https://wa.me/918918935056?text=Hello%20Dr.%20Roy,%20I%20am%20interested%20in%20a%20Smile%20Makeover." 
+       class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+       <svg viewBox="0 0 32 32" class="whatsapp-icon"><path d="M16,2A13,13,0,0,0,8,25.23L2.92,27l1.9-5A13,13,0,0,0,16,2Z M16,24a10.3,10.3,0,0,1-5.6-1.6l-2.8,1,1-2.7A10.3,10.3,0,1,1,16,24Z" fill="currentColor"/><path d="M21.5,18.6c-0.2-0.1-1.3-0.6-1.5-0.7c-0.2-0.1-0.3-0.1-0.5,0.1c-0.1,0.3-0.6,0.7-0.7,0.9c-0.1,0.1-0.3,0.1-0.5,0c-0.2-0.1-1-0.4-1.9-1.2c-0.7-0.6-1.2-1.4-1.3-1.6c-0.1-0.2,0-0.4,0.1-0.5c0.1-0.1,0.2-0.2,0.3-0.4c0.1-0.1,0.1-0.2,0.2-0.3c0.1-0.1,0-0.2,0-0.3c0-0.1-0.5-1.1-0.6-1.5c-0.2-0.4-0.3-0.4-0.5-0.4h-0.4c-0.1,0-0.4,0.1-0.6,0.3c-0.2,0.2-0.8,0.8-0.8,1.9c0,1.1,0.8,2.2,0.9,2.3c0.1,0.2,1.6,2.5,3.9,3.5c0.5,0.2,1,0.4,1.3,0.5c0.6,0.2,1.1,0.2,1.5,0.1c0.5-0.1,1.3-0.6,1.5-1.1C21.9,19.3,21.9,18.8,21.5,18.6z" fill="currentColor"/></svg>
+    </a>
+
+    <script>
+        const OFFICIAL_APPOINTMENT_URL = "https://dentistjalpaiguri.github.io/appointment.html";
+        let currentLang = 'en';
+        let availableVoices = [];
+
+        function loadVoices() {
+            availableVoices = window.speechSynthesis.getVoices();
+        }
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+        loadVoices();
+
+        const botKnowledge = {
+            // 1. DOCTOR IDENTITY
+            "doctor_general": {
+                keywords: ["doctor", "ke", "who"],
+                answers: {
+                    en: "👨‍⚕️ <b>Dr. S. Roy</b> - Sr. Consultant Oral & Cosmetic Dental Surgeon.",
+                    bn: "👨‍⚕️ <b>ডঃ এস. রায়</b> - সিনিয়র ডেন্টাল সার্জন।",
+                    hi: "👨‍⚕️ <b>डॉ. एस. रॉय</b> - वरिष्ठ दंत चिकित्सक।"
+                }
+            },
+            "doctor_details": {
+                keywords: ["full name", "qualification", "degree", "experience", "bio", "nam", "naam", "parichay", "details", "exp"],
+                answers: {
+                    en: "👨‍⚕️ <b>Dr. Sudip Roy - Sr. Consultant Oral & Cosmetic Dental Surgeon</b><br>✨ Certified Dental Implantologist<br>📌 <b>Formerly Attached To:</b><br>🔹 North Bengal Dental College & Hospital<br>🔹 Eastern Railway Divisional Hospital<br><br>✨ Jalpaiguri’s Most Trusted Dental Expert<br>🦷 27+ Years of Experience<br>🦷 20,000+ Happy Smiles<br><br>🦷 <b>Dr. S. Roy’s SMILE Dental Clinic</b>, Pahari Para, Near V-Mart, Jalpaiguri.<br>📞 8918935056<br><br>🦷 <a href='" + OFFICIAL_APPOINTMENT_URL + "' style='color:#FF00FF'>Book Appointment</a>",
+                    bn: "👨‍⚕️ <b>ডঃ সুদীপ রায় - সিনিয়র ওরাল ও কসমেটিক ডেন্টাল সার্জন</b><br>✨ সার্টিফাইড ডেন্টাল ইমপ্লান্টোলজিস্ট<br>📌 <b>প্রাক্তন যুক্ত ছিলেন:</b><br>🔹 উত্তরবঙ্গ ডেন্টাল কলেজ ও হাসপাতাল<br>🔹 ইস্টার্ন রেলওয়ে বিভাগীয় হাসপাতাল<br><br>✨ জলপাইগুড়ির বিশ্বস্ত দন্ত বিশেষজ্ঞ<br>🦷 ২৭+ বছরের অভিজ্ঞতা<br>🦷 ২০,০০০+ খুশির হাসি<br><br>🦷 <b>ডঃ এস. রায়ের স্মাইল ডেন্টাল ক্লিনিক</b>, পাহাড়ি পাড়া, ভি-মার্টের কাছে, জলপাইগুড়ি।<br>📞 ৮৯১৮৯৩৫০৫৬<br><br>🦷 <a href='" + OFFICIAL_APPOINTMENT_URL + "' style='color:#FF00FF'>বুক করুন</a>",
+                    hi: "👨‍⚕️ <b>डॉ. सुदीप रॉय - वरिष्ठ सलाहकार मौखिक और कॉस्मेटिक दंत सर्जन</b><br>✨ प्रमाणित डेंटल इम्प्लांटोलॉजिस्ट<br>📌 <b>पूर्व में संलग्न:</b><br>🔹 उत्तर बंगाल डेंटल कॉलेज और अस्पताल<br>🔹 पूर्वी रेलवे डिविजनल अस्पताल<br><br>✨ जलपाईगुड़ी के सबसे भरोसेमंद दंत विशेषज्ञ<br>🦷 27+ वर्षों का अनुभव<br>🦷 20,000+ खुश मुस्कान<br><br>🦷 <b>डॉ. एस. रॉय का स्माइल डेंटल क्लिनिक</b>, पहाड़ी पारा, वी-मार्ट के पास, जलपाईगुड़ी।<br>📞 8918935056<br><br>🦷 <a href='" + OFFICIAL_APPOINTMENT_URL + "' style='color:#FF00FF'>अपॉइंटमेंट बुक करें</a>"
+                }
+            },
+
+            // 2. BASICS & LOCATION
+            "location": {
+                keywords: ["where", "location", "address", "near", "kothay", "thikana", "kahan", "pata", "map", 
+                           "siliguri", "malbazar", "dhupguri", "mainaguri", "belacoba", "fatapukur", 
+                           "raninagar", "mohitnagar", "lataguri", "odlabari", "kranti", "banarhat", 
+                           "gairkata", "maskalaibari", "shantipara", "73 more", "assam more"],
+                answers: {
+                    en: "📍 <b>Location:</b> Pahari Para, Near V-Mart/Kotwali Thana, Jalpaiguri. <br>Easy access from Dhupguri & Maynaguri.",
+                    bn: "আমাদের ক্লিনিক <b>পাহাড়ি পাড়া, ভি-মার্টের কাছে, জলপাইগুড়ি</b>। <br>ধূপগুড়ি এবং ময়নাগুড়ি থেকে সহজেই আসা যায়।",
+                    hi: "हमारा क्लिनिक <b>पहाड़ी पारा, वी-मार्ट के पास, जलपाईगुड़ी</b> में है।"
+                }
+            },
+            "timing": {
+                keywords: ["time", "timing", "open", "close", "hour", "kokhon", "bosen", "somoy", "kab", "baje", "schedule"],
+                answers: {
+                    en: "🕒 <b>Hours:</b> Mon-Sat: 10 AM - 8 PM. <br>Sunday: By Appointment Only. <br><a href='" + OFFICIAL_APPOINTMENT_URL + "' style='color:#FF00FF'>Book Slot</a>",
+                    bn: "🕒 <b>সময়:</b> সোম-শনি: সকাল ১০টা - রাত ৮টা। <br>রবিবার: অ্যাপয়েন্টমেন্ট সাপেক্ষে।",
+                    hi: "🕒 <b>समय:</b> सोम-शनि: सुबह 10 बजे - रात 8 बजे। <br>रविवार: केवल अपॉइंटमेंट पर।"
+                }
+            },
+            "cost": {
+                keywords: ["cost", "price", "rate", "how much", "dam", "taka", "kharach", "paisa", "kimat", "fee", "fees", "charge", "koto"],
+                answers: {
+                    en: "Consultation Fee: <b>₹500</b>. <br>⚠️ <b>Advance Booking Required.</b> Slots are limited. <a href='" + OFFICIAL_APPOINTMENT_URL + "' style='color:#FF00FF'>Pay & Book Now</a>",
+                    bn: "পরামর্শ ফি: <b>৫০০ টাকা</b>। <br>⚠️ <b>অগ্রিম বুকিং বাধ্যতামূলক।</b> ভিড় এড়াতে এখনই বুক করুন।",
+                    hi: "परामर्श शुल्क: <b>₹500</b>। <br>⚠️ <b>एडवांस बुकिंग जरूरी है।</b> अभी स्लॉट बुक करें।"
+                }
+            },
+            "economy": {
+                keywords: ["economy", "package", "cheap", "budget", "offer", "kom dam", "sosta", "kam dam", "smile", "design"],
+                answers: {
+                    en: "🎉 <b>Economy Package:</b> Scaling + Gap Filling + Polishing. Affordable for everyone! <a href='" + OFFICIAL_APPOINTMENT_URL + "' style='color:#FF00FF'>Book Now</a>",
+                    bn: "🎉 <b>ইকোনমি প্যাকেজ:</b> স্কেলিং + গ্যাপ ফিলিং + পলিশিং। সবার জন্য সাশ্রয়ী!",
+                    hi: "🎉 <b>इकोनॉमी पैकेज:</b> स्केलिंग + गैप फिलिंग + पॉलिशिंग। सभी के लिए किफायती!"
+                }
+            },
+            "pain": {
+                keywords: ["pain", "hurt", "ache", "betha", "byatha", "dard", "dukh"],
+                answers: {
+                    en: "🚨 <b>Pain?</b> Do not wait. Infection spreads fast. We have an Emergency Slot open. <a href='" + OFFICIAL_APPOINTMENT_URL + "' style='color:red'>Book Urgent</a>",
+                    bn: "🚨 <b>ব্যাথা?</b> দেরি করবেন না। ইনফেকশন দ্রুত ছড়ায়। আমাদের ইমার্জেন্সি স্লট খোলা আছে।",
+                    hi: "🚨 <b>दर्द?</b> इंतजार न करें। संक्रमण तेजी से फैलता है। इमरजेंसी स्लॉट खुला है।"
+                }
+            },
+            "crowns": {
+                keywords: ["crown", "cap", "bridge", "metal", "zirconia", "mri", "teeth", "daat", "dat", "dant"],
+                answers: {
+                    en: "⚠️ <b>Warning:</b> Metal caps affect MRI scans. Dr. Roy insists on <b>MRI-Safe Zirconia</b> only.",
+                    bn: "⚠️ <b>সতর্কতা:</b> মেটাল ক্যাপ এমআরআই স্ক্যানে সমস্যা করে। ডঃ রায় শুধুমাত্র <b>MRI-সেফ জিরকোনিয়া</b> ব্যবহার করেন।",
+                    hi: "⚠️ <b>चेतावनी:</b> धातु के कैप MRI स्कैन को प्रभावित करते हैं। डॉ. रॉय केवल <b>MRI-सुरक्षित ज़िरकोनिया</b> का उपयोग करते हैं।"
+                }
+            },
+            "aligners": {
+                keywords: ["aligner", "invisalign", "braces", "straight", "aka baka", "tedhe", "tar", "soja"],
+                answers: {
+                    en: "✨ <b>Invisible Aligners:</b> Straighten teeth without metal wires! <br>Starting at ₹60,000. <a href='" + OFFICIAL_APPOINTMENT_URL + "' style='color:#FF00FF'>Book Scan</a>",
+                    bn: "✨ <b>অদৃশ্য ব্রেসেস:</b> তার ছাড়াই দাঁত সোজা করুন! <br>খরচ শুরু ৬০,০০০ টাকা থেকে।",
+                    hi: "✨ <b>इनविजिबल ब्रेसेस:</b> बिना तार के दांत सीधे करें! <br>शुरुआती कीमत ₹60,000।"
+                }
+            },
+            "gums": {
+                keywords: ["gum", "blood", "bleed", "rokto", "gingivitis", "pyorrhea", "khoon", "mari"],
+                answers: {
+                    en: "🩸 <b>Bleeding Gums?</b> This is Pyorrhea. It loosens teeth. You need Ultrasonic Cleaning immediately.",
+                    bn: "🩸 <b>মাড়ি থেকে রক্ত?</b> এটি পায়োরিয়ার লক্ষণ। দাঁত বাঁচাতে দ্রুত স্কেলিং প্রয়োজন।",
+                    hi: "🩸 <b>मसूड़ों से खून?</b> यह पायरिया का संकेत है। दांत बचाने के लिए तुरंत सफाई कराएं।"
+                }
+            },
+            "bad_breath": {
+                keywords: ["smell", "breath", "gondho", "badbu", "odor", "mukh", "durgondho"],
+                answers: {
+                    en: "🙊 <b>Bad Breath?</b> It comes from bacteria or stomach issues. We can fix it with Deep Cleaning.",
+                    bn: "🙊 <b>মুখে গন্ধ?</b> এটি ব্যাকটেরিয়ার কারণে হয়। আমরা ডিপ ক্লিনিং করে এটি ঠিক করতে পারি।",
+                    hi: "🙊 <b>मुंह से बदबू?</b> हम इसे डीप क्लीनिंग से ठीक कर सकते हैं।"
+                }
+            },
+            "extraction": {
+                keywords: ["extraction", "remove", "pull", "tola", "tulbo", "uprana", "nikalna", "bhanga", "wisdom", "akkel"],
+                answers: {
+                    en: "🦷 <b>Tooth Removal:</b> Fear not! We do Painless Extraction using advanced numbing gel. Safe for BP/Sugar patients.",
+                    bn: "🦷 <b>দাঁত তোলা:</b> আমরা অবশ করার জেল ব্যবহার করি। ব্যথাহীন ভাবে দাঁত তোলা হয়।",
+                    hi: "🦷 <b>दांत निकालना:</b> हम दर्द रहित तकनीक का उपयोग करते हैं।"
+                }
+            },
+            "filling": {
+                keywords: ["filling", "cavity", "hole", "gorto", "ched", "kalo", "black", "cement"],
+                answers: {
+                    en: "🦷 <b>Cavity/Hole?</b> We use Laser Composite Filling (Tooth Colored). No more black silver fillings!",
+                    bn: "🦷 <b>দাঁতে গর্ত?</b> আমরা লেজার ফিলিং করি যা একদম আসল দাঁতের মতো দেখতে।",
+                    hi: "🦷 <b>दांत में छेद?</b> हम लेजर फिलिंग करते हैं जो बिल्कुल असली दांत जैसा दिखता है।"
+                }
+            },
+            "dentures": {
+                keywords: ["denture", "batisi", "set", "nakli daat", "dadur", "didar", "fake teeth"],
+                answers: {
+                    en: "👴 <b>Dentures (Batisi):</b> We make unbreakable, flexible BPS Dentures. Very comfortable for eating.",
+                    bn: "👴 <b>বাঁধানো দাঁত (পাটি):</b> আমরা আনব্রেকেবল বাতিসি বানাই। খেতে কোনো অসুবিধা হবে না।",
+                    hi: "👴 <b>बत्तीसी:</b> हम टूटने वाली नहीं, बल्कि लचीली बत्तीसी बनाते हैं।"
+                }
+            },
+            "kids": {
+                keywords: ["kid", "child", "baby", "bacha", "shishu", "baccha", "milk teeth"],
+                answers: {
+                    en: "👶 <b>Kids Dentistry:</b> We treat children with extra care. Fluoride treatment available.",
+                    bn: "👶 <b>শিশুদের চিকিৎসা:</b> আমরা শিশুদের খুব যত্নের সাথে দেখি। ফ্লুরাাইড চিকিৎসা উপলব্ধ।",
+                    hi: "👶 <b>बच्चों का दंत चिकित्सा:</b> हम बच्चों का इलाज बहुत देखभाल से करते हैं।"
+                }
+            },
+            "diabetes": {
+                keywords: ["diabetes", "sugar", "diabetic", "blood pressure", "bp", "heart", "rog"],
+                answers: {
+                    en: "🩺 <b>Medical Safety:</b> High Sugar/BP? Don't worry. Dr. Roy monitors vitals during treatment. It's safe here.",
+                    bn: "🩺 <b>ডায়াবেটিস রোগী:</b> ডঃ রায় সুগার এবং প্রেসারের রোগীদের বিশেষ সতর্কতার সাথে চিকিৎসা করেন।",
+                    hi: "🩺 <b>मेडिकल सुरक्षा:</b> डॉ. रॉय शुगर और बीपी के मरीजों का इलाज विशेष सुरक्षा के साथ करते हैं।"
+                }
+            },
+            "safety": {
+                keywords: ["safety", "sterile", "clean", "hygiene", "virus", "infection", "safe"],
+                answers: {
+                    en: "🛡️ <b>100% Sterile:</b> We use 4-Step Autoclave Sterilization. Every instrument is sealed and opened in front of you.",
+                    bn: "🛡️ <b>জীবাণুমুক্ত:</b> আমরা ৪-ধাপে যন্ত্রপাতি জীবাণুমুক্ত করি। আপনার সামনেই প্যাকেট খোলা হবে।",
+                    hi: "🛡️ <b>सुरक्षा:</b> हम पूरी तरह से स्टरलाइज्ड उपकरणों का उपयोग करते हैं।"
+                }
+            },
+            "sensitivity": {
+                keywords: ["sensitivity", "sensodyne", "shirshir", "shir shir", "cold water", "ice", "thanda", "jhin jhin"],
+                answers: {
+                    en: "❄️ <b>Sensitivity?</b> If cold water hurts, your enamel is weak. You need Desensitizing Treatment.",
+                    bn: "❄️ <b>দাঁতে শিরশির?</b> ঠান্ডা জল লাগলে এনামেল ক্ষয় হতে পারে। দ্রুত চিকিৎসা নিন।",
+                    hi: "❄️ <b>दांतों में झनझनाहट?</b> ठंडा पानी लगने का मतलब इनेमल कमजोर है। तुरंत इलाज कराएं।"
+                }
+            },
+            "whitening": {
+                keywords: ["white", "yellow", "clean", "bleach", "sada", "holud", "saf", "wash", "porishkar", "wedding"],
+                answers: {
+                    en: "✨ <b>Laser Whitening:</b> Getting married? Get bright white teeth in just 45 minutes.",
+                    bn: "✨ <b>দাঁত সাদা করা:</b> মাত্র ৪৫ মিনিটে দাঁত ঝকঝকে সাদা করুন। বিয়ের জন্য পারফেক্ট।",
+                    hi: "✨ <b>दांत सफेद करना:</b> केवल 45 मिनट में अपने दांतों को चमकदार बनाएं।"
+                }
+            },
+            "implant": {
+                keywords: ["implant", "screw", "fix", "missing", "nakli", "fake", "bosabo", "lagabo", "permanent"],
+                answers: {
+                    en: "🔩 <b>Dental Implants:</b> The only permanent solution for missing teeth. Lifetime warranty available.",
+                    bn: "🔩 <b>ইমপ্লান্ট:</b> নকল দাঁত লাগানোর সেরা উপায়। এটি একদম আসল দাঁতের মতো কাজ করে।",
+                    hi: "🔩 <b>इम्प्लांट:</b> यह नकली दांत लगाने का सबसे पक्का तरीका है।"
+                }
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+            
+            const inputs = { en: "Type or Speak...", bn: "লিখুন বা বলুন...", hi: "लिखें या बोलें..." };
+            document.getElementById('chat-input').placeholder = inputs[lang];
+            
+            const greetings = { en: "Language set to English.", bn: "ভাষা বাংলায় পরিবর্তন করা হয়েছে।", hi: "भाषा हिंदी में सेट की गई है।" };
+            speakText(greetings[lang]);
+        }
+
+        function toggleVoice() {
+            const micBtn = document.getElementById('mic-btn');
+            if (!('webkitSpeechRecognition' in window)) { alert("Voice not supported. Use Chrome."); return; }
+
+            const recognition = new webkitSpeechRecognition();
+            if(currentLang === 'en') recognition.lang = 'en-IN';
+            if(currentLang === 'bn') recognition.lang = 'bn-IN';
+            if(currentLang === 'hi') recognition.lang = 'hi-IN';
+            
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+            recognition.start();
+            micBtn.classList.add('listening');
+
+            recognition.onresult = function(event) {
+                const speechResult = event.results[0][0].transcript;
+                document.getElementById('chat-input').value = speechResult;
+                sendChat(speechResult);
+                micBtn.classList.remove('listening');
+            };
+            recognition.onend = function() { micBtn.classList.remove('listening'); };
+        }
+
+        function speakText(text) {
+            window.speechSynthesis.cancel();
+            const cleanText = text.replace(/<[^>]*>?/gm, ''); 
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            
+            if (availableVoices.length === 0) loadVoices(); 
+
+            if (currentLang === 'bn') {
+                const bnVoice = availableVoices.find(v => v.lang.includes('bn') && v.name.includes('Google')) 
+                             || availableVoices.find(v => v.lang.includes('bn'));
+                if (bnVoice) utterance.voice = bnVoice;
+                utterance.lang = 'bn-IN';
+                utterance.rate = 0.85; 
+            } 
+            else if (currentLang === 'hi') {
+                const hiVoice = availableVoices.find(v => v.lang.includes('hi') && v.name.includes('Google')) 
+                             || availableVoices.find(v => v.lang.includes('hi'));
+                if (hiVoice) utterance.voice = hiVoice;
+                utterance.lang = 'hi-IN';
+                utterance.rate = 0.9;
+            } 
+            else {
+                utterance.lang = 'en-IN';
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function sendChat(query) {
+            const chatBody = document.getElementById('chatBody');
+            const input = document.getElementById('chat-input');
+            const lower = query.toLowerCase();
+
+            const uDiv = document.createElement('div');
+            uDiv.className = 'user-msg';
+            uDiv.textContent = query;
+            chatBody.appendChild(uDiv);
+            input.value = '';
+
+            let botResponse = "";
+            let matchFound = false;
+
+            if (lower.includes("book") || lower.includes("appointment") || 
+                lower.includes("lekhabo") || lower.includes("serial") || 
+                lower.includes("register") || lower.includes("বুক") || 
+                lower.includes("সিরিয়াল") || lower.includes("बुकिंग")) {
+                
+                setTimeout(() => { window.location.href = OFFICIAL_APPOINTMENT_URL; }, 2000);
+                
+                if (currentLang === 'bn') {
+                    botResponse = "ঠিক আছে। নাম লেখানোর জন্য বুকিং পেজে নিয়ে যাচ্ছি...";
+                } else if (currentLang === 'hi') {
+                    botResponse = "ठीक है। नाम लिखवाने के लिए बुकिंग पेज पर ले जा रहा हूँ...";
+                } else {
+                    botResponse = "Redirecting you to the Booking Page...";
+                }
+                matchFound = true;
+            } 
+            else if (lower.includes("upload") || lower.includes("photo") || lower.includes("image") || lower.includes("chobi")) {
+                uploadToWhatsApp();
+                botResponse = "WhatsApp opened. Please attach your photo.";
+                matchFound = true;
+            }
+            else {
+                for (const key in botKnowledge) {
+                    const topic = botKnowledge[key];
+                    if (topic.keywords.some(word => lower.includes(word))) {
+                        botResponse = topic.answers[currentLang];
+                        matchFound = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!matchFound) {
+                const defaults = {
+                    en: "I noted that. To help you better, please upload a photo or book a visit.",
+                    bn: "আমি বুঝতে পারিনি। অ্যাপয়েন্টমেন্ট বা 'সিরিয়াল' নিতে চাইলে 'Serial' লিখুন।",
+                    hi: "मैंने नोट कर लिया है। अपॉइंटमेंट के लिए कृपया 'Book' लिखें।"
+                };
+                botResponse = defaults[currentLang];
+            }
+
+            setTimeout(() => {
+                const bDiv = document.createElement('div');
+                bDiv.className = 'bot-msg';
+                bDiv.innerHTML = botResponse;
+                chatBody.appendChild(bDiv);
+                chatBody.scrollTop = chatBody.scrollHeight;
+                speakText(botResponse);
+            }, 800);
+        }
+
+        function handleChat(e) { if (e.key === 'Enter') sendChatFromInput(); }
+        function sendChatFromInput() {
+            const input = document.getElementById('chat-input');
+            const query = input.value.trim();
+            if (query) sendChat(query);
+        }
+
+        document.getElementById('lead-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value;
+            const phone = document.getElementById('reg-phone').value;
+            const email = document.getElementById('reg-email').value;
+            const submitBtn = this.querySelector('button[type="submit"]');
+
+            if (phone.length < 10) { alert("Invalid Phone / ভুল নম্বর"); return; }
+
+            submitBtn.textContent = "Processing...";
+            submitBtn.disabled = true;
+
+            emailjs.send("service_oqtkpig", "template_f7f80kp", { name, phone, email })
+            .then(() => {
+                const formContainer = document.getElementById('reg-form-container');
+                const overlay = document.getElementById('chat-lock-overlay');
+                
+                formContainer.style.opacity = '0';
+                setTimeout(() => { formContainer.classList.add('hidden-force'); }, 500);
+                overlay.style.opacity = '0';
+                setTimeout(() => { overlay.style.display = 'none'; }, 500);
+                
+                setTimeout(() => {
+                    const welcome = `Welcome ${name}! Select your language above.`;
+                    const bDiv = document.createElement('div');
+                    bDiv.className = 'bot-msg';
+                    bDiv.innerHTML = welcome;
+                    document.getElementById('chatBody').appendChild(bDiv);
+                    speakText(welcome);
+                }, 600);
+            });
+        });
+
+        function uploadToWhatsApp() {
+            const msgs = {
+                en: "Hello Dr. Roy, I want to upload a photo.",
+                bn: "হ্যালো ডাক্তার বাবু, আমি দাঁতের ছবি পাঠাতে চাই।",
+                hi: "नमस्ते डॉक्टर साहब, मैं दांतों की फोटो भेजना चाहता हूँ।"
+            };
+            const waURL = `https://wa.me/918918935056?text=${encodeURIComponent(msgs[currentLang])}`;
+            window.open(waURL, '_blank');
+        }
+
+        // --- REALISTIC RANDOMIZATION ENGINE (25x25x25) ---
+        const names = [
+            "Amit Roy", "Sneha Biswas", "Rahul Das", "Priya Saha", "Vikram Sen", 
+            "Anjali Ghosh", "Suman Barman", "Tuhina Parvin", "Rajesh Mondal", "Moumita Bose",
+            "Dipankar Sarkar", "Susmita Nandy", "Abhijit Paul", "Payel Chakraborty", "Pradip Dey",
+            "Aditi Misra", "Subhashish Dutta", "Kakoli Debnath", "Kingshuk Banerjee", "Riya Ganguly",
+            "Biswajit Ray", "Swastika Majumdar", "Sujoy Chatterjee", "Debjani Basak", "Anirban Kar"
+        ];
+        const treatments = [
+            "Smile Makeover", "Zirconia Crown", "Ceramic Bridge", "Fixed Teeth Set", "Laser Whitening",
+            "Painless RCT", "Cosmetic Veneers", "Gap Closure", "Oral Ulcer Checkup", "Pyorrhea Treatment",
+            "Bad Breath Cure", "Pre-cancerous Screening", "Wisdom Tooth Removal", "Dental Implant", "Metal-Free Cap",
+            "Full Denture (Batisi)", "Gum Surgery", "Scaling & Polishing", "Invisible Braces", "Kids Fluoride Therapy",
+            "Cavity Filling", "Tooth Jewelery", "Sensitivity Treatment", "Root Stump Removal", "Emergency Pain Relief"
+        ];
+        const locations = [
+            "Jalpaiguri", "Dhupguri", "Maynaguri", "Malbazar", "Siliguri", 
+            "Haldibari", "Mekhliganj", "Rajganj", "Belacoba", "Falakata", 
+            "Alipurduar", "Coochbehar", "Banarhat", "Gairkata", "Lataguri", 
+            "Odlabari", "Kranti", "Raninagar", "Mohitnagar", "Denguajhar", 
+            "Maskalaibari", "Shantipara", "73 More", "Assam More", "Kadamtala"
+        ];
+        const times = ["Just now", "2 mins ago", "5 mins ago", "12 mins ago", "1 hour ago"];
+
+        function showSocialProof() {
+            const notification = document.getElementById('social-proof');
+            const nameEl = document.getElementById('proof-name');
+            const actionEl = document.getElementById('proof-action');
+            const timeEl = document.getElementById('proof-time');
+
+            // Random Selection
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomTreatment = treatments[Math.floor(Math.random() * treatments.length)];
+            const randomLocation = locations[Math.floor(Math.random() * locations.length)];
+            const randomTime = times[Math.floor(Math.random() * times.length)];
+
+            nameEl.textContent = `${randomName} from ${randomLocation}`;
+            actionEl.textContent = `booked a ${randomTreatment}`;
+            timeEl.textContent = randomTime;
+
+            notification.classList.add('active');
+            setTimeout(() => { notification.classList.remove('active'); }, 4000);
+        }
+
+        setTimeout(() => {
+            showSocialProof();
+            setInterval(showSocialProof, 15000);
+        }, 5000);
+    </script>
+</body>
+</html>
