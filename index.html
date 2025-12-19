@@ -43,7 +43,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
-        /* --- ORIGINAL NEON THEME --- */
+        /* --- NEON THEME --- */
         :root { --dark-bg: #0A0A1A; --neon-blue: #00FFFF; --neon-pink: #FF00FF; }
         body { font-family: 'Space Mono', 'Hind Siliguri', monospace; background: var(--dark-bg); color: var(--neon-blue); min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
         
@@ -67,20 +67,17 @@
         .mic-btn.listening { color: #FF0000; animation: pulse-red 1.5s infinite; transform: scale(1.2); }
         @keyframes pulse-red { 0% { text-shadow: 0 0 0 rgba(255,0,0,0.7); } 70% { text-shadow: 0 0 10px rgba(255,0,0,0); } }
 
-        /* MASTER NETWORK LINKS STYLING */
+        /* LINKS STYLING */
         .master-links-container { background: #111; padding: 20px; margin-top: 30px; border-top: 1px solid #333; }
         .link-category { margin-bottom: 20px; }
         .link-category h4 { color: var(--neon-pink); font-size: 14px; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
         .link-grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
-        
         .net-link { color: #aaa; font-size: 11px; text-decoration: none; border: 1px solid #333; padding: 6px 10px; border-radius: 4px; display: inline-block; transition: all 0.3s; background: #0a0a0a; }
         .net-link:hover { border-color: var(--neon-blue); color: white; box-shadow: 0 0 8px rgba(0, 255, 255, 0.2); }
-        
-        /* Primary Link Distinction */
         .net-link.primary { border-color: var(--neon-blue); color: white; font-weight: bold; background: #1A1A3A; }
         .net-link.secondary { font-size: 10px; color: #888; border-color: #222; }
 
-        /* SOCIAL PROOF POPUP */
+        /* SOCIAL PROOF */
         .proof-notification { position: fixed; bottom: 90px; left: 20px; background: rgba(0, 0, 0, 0.95); border: 1px solid var(--neon-pink); border-left: 4px solid var(--neon-pink); padding: 12px 15px; border-radius: 4px; color: white; font-size: 12px; box-shadow: 0 0 15px rgba(255, 0, 255, 0.3); z-index: 90; display: flex; align-items: center; gap: 12px; opacity: 0; transform: translateY(20px); transition: all 0.5s ease-in-out; pointer-events: none; }
         .proof-notification.active { opacity: 1; transform: translateY(0); pointer-events: auto; }
         .proof-avatar { width: 35px; height: 35px; background: #1A1A3A; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 16px; border: 1px solid var(--neon-pink); color: var(--neon-pink); }
@@ -93,7 +90,7 @@
         /* WHATSAPP FLOAT */
         .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 25px; right: 25px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 0px 0px 15px rgba(37, 211, 102, 0.6); z-index: 1000; display: flex; align-items: center; justify-content: center; }
 
-        /* REVIEW SHIELD STYLES */
+        /* REVIEW SHIELD */
         .review-box { background: #1A1A3A; border: 2px solid var(--neon-pink); padding: 20px; border-radius: 10px; width: 90%; max-width: 400px; text-align: center; position: relative; box-shadow: 0 0 30px rgba(255,0,255,0.2); }
         .star-rating { font-size: 30px; cursor: pointer; color: #555; transition: color 0.2s; }
         .star-rating span:hover, .star-rating span.active { color: #FFD700; text-shadow: 0 0 10px #FFD700; }
@@ -116,7 +113,7 @@
 
             <div class="chat-header text-xs py-2 px-3 border-b border-gray-700 bg-gray-900 flex justify-between items-center">
                 <span>AI Status: <span class="animate-pulse" style="color: var(--neon-pink);">• Online</span></span>
-                <span class="text-gray-500">Dr. Roy AI v20.0 (Apex)</span>
+                <span class="text-gray-500">Dr. Roy AI v21.0 (Polyglot)</span>
             </div>
             
             <div id="chatBody" class="chat-body flex flex-col">
@@ -268,7 +265,7 @@
         let confidenceLineShown = false;
         let reviewPromptShown = false; 
         let meaningfulReplies = 0; 
-        const FREE_LIMIT = 2; // 2 Free messages
+        const FREE_LIMIT = 2; 
 
         // 1. LEAD FORM SUBMIT
         document.getElementById('lead-form').addEventListener('submit', function(e) {
@@ -276,7 +273,6 @@
             const name = document.getElementById('reg-name').value;
             if (name.length < 2) return;
 
-            // Unlock
             isUnlocked = true;
             document.getElementById('lead-modal').style.display = 'none';
             
@@ -430,7 +426,7 @@
         }
         function submitInternalFeedback() { alert("Feedback Sent!"); closeReviewModal(); }
 
-        // 6. UTILITIES
+        // 6. ROBUST VOICE ENGINE (FIXED)
         function setLanguage(lang) {
             currentLang = lang;
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -440,11 +436,22 @@
         }
         
         function speakText(text) {
-            window.speechSynthesis.cancel();
-            const clean = text.replace(/<[^>]*>?/gm, '').slice(0, 240); 
-            const msg = new SpeechSynthesisUtterance(clean);
-            msg.lang = currentLang === 'en' ? 'en-IN' : (currentLang === 'bn' ? 'bn-IN' : 'hi-IN');
-            window.speechSynthesis.speak(msg);
+            if (!window.speechSynthesis) return;
+            const clean = text.replace(/<[^>]*>?/gm, '').slice(0, 240);
+            const utterance = new SpeechSynthesisUtterance(clean);
+            let preferredLangs = [];
+            if (currentLang === 'bn') preferredLangs = ['bn-IN', 'hi-IN', 'en-IN'];
+            else if (currentLang === 'hi') preferredLangs = ['hi-IN', 'en-IN'];
+            else preferredLangs = ['en-IN'];
+            const voices = speechSynthesis.getVoices();
+            let selectedVoice = null;
+            for (let lang of preferredLangs) {
+                selectedVoice = voices.find(v => v.lang === lang);
+                if (selectedVoice) { utterance.lang = lang; utterance.voice = selectedVoice; break; }
+            }
+            if (!selectedVoice) utterance.lang = 'en-IN';
+            speechSynthesis.cancel();
+            speechSynthesis.speak(utterance);
         }
         
         function toggleVoice() {
@@ -470,10 +477,8 @@
             const n = document.getElementById('social-proof');
             const name = proofNames[Math.floor(Math.random() * proofNames.length)];
             const action = proofActions[Math.floor(Math.random() * proofActions.length)];
-            
             document.getElementById('proof-name').innerText = name;
             document.getElementById('proof-action').innerText = action;
-            
             n.classList.add('active');
             setTimeout(() => n.classList.remove('active'), 4000);
         }
@@ -481,6 +486,9 @@
             showSocialProof();
             setInterval(showSocialProof, 15000);
         }, 5000);
+        
+        // Voice Load Init
+        window.speechSynthesis.onvoiceschanged = function() { window.speechSynthesis.getVoices(); };
     </script>
 </body>
 </html>
