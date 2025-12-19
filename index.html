@@ -107,7 +107,7 @@
 
             <div class="chat-header text-xs py-2 px-3 border-b border-gray-700 bg-gray-900 flex justify-between items-center">
                 <span>AI Status: <span class="animate-pulse" style="color: var(--neon-pink);">• Online</span></span>
-                <span class="text-gray-500">Dr. Roy AI v23.0 (Voice Pro)</span>
+                <span class="text-gray-500">Dr. Roy AI v25.0 (Voice Fallback)</span>
             </div>
             
             <div id="chatBody" class="chat-body flex flex-col">
@@ -261,7 +261,7 @@
         let meaningfulReplies = 0; 
         const FREE_LIMIT = 2; 
 
-        // --- NEW ROBUST VOICE ENGINE ---
+        // --- NEW ROBUST VOICE ENGINE (FIXED) ---
         let voicesReady = false;
         let cachedVoices = [];
 
@@ -274,7 +274,7 @@
         
         if ('speechSynthesis' in window) {
             window.speechSynthesis.onvoiceschanged = loadVoices;
-            loadVoices(); // Try immediately
+            loadVoices(); 
         }
 
         // 1. LEAD FORM SUBMIT
@@ -314,7 +314,6 @@
         // 4. CHAT LOGIC
         function sendChat(query) {
             const chatBody = document.getElementById('chatBody');
-            
             const uDiv = document.createElement('div');
             uDiv.className = 'user-msg';
             uDiv.textContent = query;
@@ -419,7 +418,7 @@
         }
         function submitInternalFeedback() { alert("Feedback Sent!"); closeReviewModal(); }
 
-        // 6. ROBUST VOICE ENGINE (FINAL)
+        // 6. ROBUST VOICE ENGINE (SMART FALLBACK)
         function setLanguage(lang) {
             currentLang = lang;
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -431,7 +430,7 @@
         function speakText(text) {
             if (!window.speechSynthesis) return;
             if (!voicesReady) {
-                setTimeout(() => speakText(text), 400); // Wait 400ms if voices not ready
+                setTimeout(() => speakText(text), 400); 
                 return;
             }
 
@@ -439,20 +438,25 @@
             const utterance = new SpeechSynthesisUtterance(clean);
 
             let preferredLangs = [];
-            if (currentLang === 'bn') preferredLangs = ['bn-IN', 'hi-IN', 'en-IN'];
-            else if (currentLang === 'hi') preferredLangs = ['hi-IN', 'en-IN'];
-            else preferredLangs = ['en-IN'];
+            // FALLBACK LOGIC: Try Bangla -> Hindi -> English
+            if (currentLang === 'bn') {
+                preferredLangs = ['bn-IN', 'bn_BD', 'bn', 'hi-IN', 'en-IN'];
+            } else if (currentLang === 'hi') {
+                preferredLangs = ['hi-IN', 'hi', 'en-IN'];
+            } else {
+                preferredLangs = ['en-IN', 'en-US'];
+            }
 
             let selected = null;
-            for (let lang of preferredLangs) {
-                selected = cachedVoices.find(v => v.lang === lang);
+            for (let langCode of preferredLangs) {
+                selected = cachedVoices.find(v => v.lang.includes(langCode));
                 if (selected) {
-                    utterance.lang = lang;
+                    utterance.lang = selected.lang;
                     utterance.voice = selected;
                     break;
                 }
             }
-            if (!selected) utterance.lang = 'en-IN'; // Final fallback
+            if (!selected) utterance.lang = 'en-IN'; // Ultimate Fallback
 
             speechSynthesis.cancel();
             speechSynthesis.speak(utterance);
@@ -484,6 +488,9 @@
             setTimeout(() => n.classList.remove('active'), 4000);
         }
         setTimeout(() => { showSocialProof(); setInterval(showSocialProof, 15000); }, 5000);
+        
+        // Init Voice
+        window.speechSynthesis.onvoiceschanged = function() { window.speechSynthesis.getVoices(); };
     </script>
 </body>
 </html>
