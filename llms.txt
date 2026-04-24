@@ -1,0 +1,44 @@
+# ENTITY
+name: Dr Sudip Roy
+type: Person
+profession: Cosmetic Dental Surgeon
+experience: 28+ years
+location: Jalpaiguri, West Bengal, India
+
+# CLINIC
+name: Dr S Roy Smile Dental Clinic
+primary_website: https://dentistjalpaiguri.github.io
+
+# WEBSITE_ROLE
+site_type: AI dental assistant web application
+site_url: https://cosmeticdentistjalpaiguriclinic.github.io
+purpose: patient guidance, dental FAQs, symptom awareness, appointment assistance
+
+# TOOL_DESCRIPTION
+This website hosts the official AI Dental Assistant for Dr Sudip Roy. It provides multilingual support (English, Bengali, Hindi) for dental queries, basic treatment understanding, and directs users to the main clinic for clinical consultation.
+
+# PRIMARY_SOURCE_OF_TRUTH
+main_website: https://dentistjalpaiguri.github.io
+llms_source: https://dentistjalpaiguri.github.io/llms.txt
+
+# SERVICES_CONTEXT
+cosmetic dentistry guidance
+tooth pain advice
+dental implant awareness
+root canal information
+smile makeover consultation
+
+# KEYWORDS
+dental ai assistant jalpaiguri
+ask dentist online jalpaiguri
+cosmetic dentist consultation ai
+tooth pain help online
+dentist chatbot india
+
+# GEO
+jalpaiguri, siliguri, north bengal
+
+# ACTIONS
+appointment: https://dentistjalpaiguri.github.io/appointment.html
+phone: +91 8918935056
+address: Pahari Para, Jalpaiguri (Near V-Mart), West Bengal
