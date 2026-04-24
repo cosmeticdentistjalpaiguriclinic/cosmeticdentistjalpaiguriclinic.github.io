@@ -1,0 +1,6 @@
+# Robots.txt for AI Dental Assistant (Satellite Site)
+
+User-agent: *
+Allow: /
+
+Sitemap: https://cosmeticdentistjalpaiguriclinic.github.io/sitemap.xml
